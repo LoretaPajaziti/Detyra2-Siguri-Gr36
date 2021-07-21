@@ -80,5 +80,10 @@ namespace Detyra2_TCPclient
                 MessageBox.Show("Lidhja deshtoi!\n " + ex.Message);
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

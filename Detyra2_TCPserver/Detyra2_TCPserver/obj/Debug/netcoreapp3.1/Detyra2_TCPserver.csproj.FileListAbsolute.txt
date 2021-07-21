@@ -1,0 +1,15 @@
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.csprojAssemblyReference.cache
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.Form1.resources
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.csproj.GenerateResource.cache
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.AssemblyInfoInputs.cache
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.AssemblyInfo.cs
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.csproj.CoreCompileInputs.cache
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.exe
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.deps.json
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.runtimeconfig.json
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.runtimeconfig.dev.json
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.dll
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\bin\Debug\netcoreapp3.1\Detyra2_TCPserver.pdb
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.dll
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.pdb
+C:\Users\loret\source\repos\Detyra2_TCPserver\Detyra2_TCPserver\obj\Debug\netcoreapp3.1\Detyra2_TCPserver.genruntimeconfig.cache

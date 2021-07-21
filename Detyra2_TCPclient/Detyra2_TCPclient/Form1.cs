@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+
+
 
 namespace Detyra2_TCPclient
 {
@@ -91,5 +96,7 @@ namespace Detyra2_TCPclient
         {
 
         }
+
+        
     }
 }
