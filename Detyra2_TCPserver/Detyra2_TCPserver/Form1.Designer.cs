@@ -29,23 +29,36 @@ namespace Detyra2_TCPserver
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtReciever = new System.Windows.Forms.TextBox();
+            this.txtReceiver = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtReciever
+            // txtReceiver
             // 
-            this.txtReciever.Location = new System.Drawing.Point(9, 13);
-            this.txtReciever.Name = "txtReciever";
-            this.txtReciever.Size = new System.Drawing.Size(772, 23);
-            this.txtReciever.TabIndex = 0;
-            this.txtReciever.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtReceiver.AllowDrop = true;
+            this.txtReceiver.Location = new System.Drawing.Point(12, 48);
+            this.txtReceiver.Multiline = true;
+            this.txtReceiver.Name = "txtReceiver";
+            this.txtReceiver.Size = new System.Drawing.Size(772, 390);
+            this.txtReceiver.TabIndex = 0;
+            this.txtReceiver.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(370, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Serveri";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtReciever);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtReceiver);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -56,7 +69,8 @@ namespace Detyra2_TCPserver
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtReciever;
+        private System.Windows.Forms.TextBox txtReceiver;
+        private System.Windows.Forms.Label label1;
     }
 }
 

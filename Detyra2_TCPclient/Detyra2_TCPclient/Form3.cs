@@ -8,48 +8,82 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace Detyra2_TCPclient
 {
     public partial class Form3 : Form
     {
+       
+        Socket klienti;
+
+        Socket socket()
+        {
+            return new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        }
 
         public Form3()
         {
             InitializeComponent();
-            
-        }
+            klienti = socket();
+            connect();
 
-        public static Socket server;
-        static string receivedData;
-        private bool Connected;
-       
-        private void SendDataToServer(string data)
-        {
-            server.Send(Encoding.ASCII.GetBytes(data));
         }
+        private void connect()
+        {
+            string ipaddress = "127.0.0.1";
+            int portNumber = 1400;
 
-        private string ReceiveDataFromServer()
-        {
-            byte[] data = new byte[512];
-            int recv_data = server.Receive(data);
-            string stringData = Encoding.ASCII.GetString(data, 0, recv_data);
-            receivedData = stringData;
-            return stringData;
-        }
-        private void SendRequestToSrv(string teksti)
-        {
             try
             {
-                server.Send(Encoding.ASCII.GetBytes(teksti));
+               klienti.Connect(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
+
+                new Thread(() =>
+                {
+                    read();
+                }).Start();
             }
-            catch (SocketException se)
+            catch
             {
-                MessageBox.Show(se.Message.ToString());
+                MessageBox.Show("Lidhja deshtoi");
             }
         }
 
+        void read()
+        {
+            while (true)
+            {
+                try
+                {
+                    byte[] buffer = new byte[2048];
+                    int rec = klienti.Receive(buffer, 0, buffer.Length, 0);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Disconnected");
+                    Application.Exit();
+                }
+            }
+        }
+
+        private void send()
+        {
+            string username = textEmail.Text;
+            string password = textPass.Text;
+            string login = "1";
+
+            string msg = username + "." + password + "." + login;
+
+           // msg = encrypt(msg);
+            byte[] data = Encoding.Default.GetBytes(msg);
+            klienti.Send(data, 0, data.Length, 0);
+        }
+
+
+     
 
 
         private void button2_Click(object sender, EventArgs e)
@@ -66,41 +100,17 @@ namespace Detyra2_TCPclient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            byte[] data = new byte[512];
-
-            Int32 port = 13000;
-            IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-
-            IPEndPoint ipep = new IPEndPoint(localAddr, port);
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            try
-            {
-                server.Connect(ipep);
-                Connected = true;
-                MessageBox.Show("Jeni lidhur me serverin!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch(SocketException ex)
-            {
-                MessageBox.Show("Lidhja me Server ka deshtuar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Connected = false;
-                return;
-            }
-
-            if (Connected)
-            {
-                Form2 frm = new Form2();
-                frm.ShowDialog();
-            }
-
-
+            send();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-        
+
+
+
     }
 }
+
+

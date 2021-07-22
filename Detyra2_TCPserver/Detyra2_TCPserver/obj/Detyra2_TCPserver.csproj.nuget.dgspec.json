@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\loret\\source\\repos\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj": {}
+    "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj": {}
   },
   "projects": {
-    "C:\\Users\\loret\\source\\repos\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj": {
+    "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loret\\source\\repos\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj",
+        "projectUniqueName": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj",
         "projectName": "Detyra2_TCPserver",
-        "projectPath": "C:\\Users\\loret\\source\\repos\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj",
+        "projectPath": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPserver\\Detyra2_TCPserver\\Detyra2_TCPserver.csproj",
         "packagesPath": "C:\\Users\\loret\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loret\\source\\repos\\Detyra2_TCPserver\\Detyra2_TCPserver\\obj\\",
+        "outputPath": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPserver\\Detyra2_TCPserver\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
