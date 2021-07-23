@@ -839,24 +839,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\loret\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\lumdu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
+      "projectUniqueName": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
       "projectName": "Detyra2_TCPclient",
-      "projectPath": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
-      "packagesPath": "C:\\Users\\loret\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\loret\\Desktop\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\obj\\",
+      "projectPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
+      "packagesPath": "C:\\Users\\lumdu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\loret\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\lumdu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -905,7 +900,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

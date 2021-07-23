@@ -126,3 +126,4 @@ C:\Users\loret\Desktop\test-detyra2\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debu
 C:\Users\loret\Desktop\test-detyra2\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debug\netcoreapp3.1\Zstandard.Net.dll
 C:\Users\loret\Desktop\test-detyra2\Detyra2_TCPclient\Detyra2_TCPclient\obj\Debug\netcoreapp3.1\Detyra2_TCPclient.csproj.CopyComplete
 C:\Users\loret\Desktop\test-detyra2\Detyra2_TCPclient\Detyra2_TCPclient\obj\Debug\netcoreapp3.1\Detyra2_TCPclient.genruntimeconfig.cache
+C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36\Detyra2_TCPclient\Detyra2_TCPclient\obj\Debug\netcoreapp3.1\Detyra2_TCPclient.Form3.resources

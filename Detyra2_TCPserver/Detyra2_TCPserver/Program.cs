@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
+using MySql.Data.MySqlClient;
+
 
 
 
@@ -27,9 +29,6 @@ namespace Detyra2_TCPserver
             Application.Run(new Form1());
    
         }
-
-
-
     }
 }
     

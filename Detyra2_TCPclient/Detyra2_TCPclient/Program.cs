@@ -20,13 +20,13 @@ namespace Detyra2_TCPclient
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form3());
+            Application.Run(new Form1());
 
+            /*Client klienti = new Client();
 
+            Socket clientConnection = klienti.clientCreate();*/
 
         }
-
-
     }
 }
     

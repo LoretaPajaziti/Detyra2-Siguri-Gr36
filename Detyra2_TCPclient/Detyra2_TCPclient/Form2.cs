@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+
 
 
 namespace Detyra2_TCPclient
@@ -13,11 +20,21 @@ namespace Detyra2_TCPclient
     public partial class Form2 : Form
     {
 
-        string ConnectionString = "Server=localhost;Database=sigdb;Uid=root;Pwd=;";
+        string form = "UPDATE";
+        string emri = "";
+        string mbiemri = "";
+        string llojiFatures = "";
+        string vlera = "";
+        string Data = "";
+        string adresa = "";
+
+
 
         public Form2()
         {
             InitializeComponent();
+
+
         }
 
         private void txtEmri_TextChanged(object sender, EventArgs e)
@@ -52,38 +69,23 @@ namespace Detyra2_TCPclient
 
         private void ndryshoButton_Click(object sender, EventArgs e)
         {
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
+             emri = txtEmri.Text;
+             mbiemri = txtMbiemri.Text;
+             llojiFatures = txtlloji.Text;
+             vlera = txtVlera.Text;
+             Data = txtData.Text;
+             adresa = txtAdresa.Text;
 
-            try
-            {
+            string msg = form + "?" + emri + "?" + mbiemri + "?" + llojiFatures + "?" + vlera + "?" + Data + "?" + adresa + "?";
 
-                connection.Open();
-
-
-                string strCommand = "UPDATE faturat SET lloji ='" + txtlloji.Text + "' , data=" + txtData.Text + ",vlera=" + txtVlera.Text + ",adresa ='" + txtAdresa.Text + "' WHERE id IN( SELECT id FROM users WHERE name = '" + txtEmri.Text + "' and surname = '" + txtMbiemri.Text + "')";
-
-                MySqlCommand sqlCommand = new MySqlCommand(strCommand, connection);
-                int retValue = sqlCommand.ExecuteNonQuery();
-                
-                if (retValue > 0)
-                {
-                    MessageBox.Show("Te dhenat u ruajten me sukses!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Ruajtja deshtoi!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lidhja deshtoi!\n " + ex.Message);
-            }
+            clientConnection.Instance.sendData(msg);
+            clientConnection.Instance.readData();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }

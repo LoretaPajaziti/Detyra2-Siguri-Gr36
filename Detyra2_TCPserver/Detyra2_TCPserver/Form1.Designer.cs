@@ -30,35 +30,41 @@ namespace Detyra2_TCPserver
         private void InitializeComponent()
         {
             this.txtReceiver = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.serverStart_bttn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtReceiver
             // 
             this.txtReceiver.AllowDrop = true;
-            this.txtReceiver.Location = new System.Drawing.Point(12, 48);
+            this.txtReceiver.Location = new System.Drawing.Point(14, 64);
+            this.txtReceiver.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtReceiver.Multiline = true;
             this.txtReceiver.Name = "txtReceiver";
-            this.txtReceiver.Size = new System.Drawing.Size(772, 390);
+            this.txtReceiver.ReadOnly = true;
+            this.txtReceiver.Size = new System.Drawing.Size(882, 519);
             this.txtReceiver.TabIndex = 0;
             this.txtReceiver.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label1
+            // serverStart_bttn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(370, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Serveri";
+            this.serverStart_bttn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.serverStart_bttn.Location = new System.Drawing.Point(14, 10);
+            this.serverStart_bttn.Name = "serverStart_bttn";
+            this.serverStart_bttn.Size = new System.Drawing.Size(245, 45);
+            this.serverStart_bttn.TabIndex = 1;
+            this.serverStart_bttn.TabStop = false;
+            this.serverStart_bttn.Text = "Start Server";
+            this.serverStart_bttn.UseVisualStyleBackColor = true;
+            this.serverStart_bttn.Click += new System.EventHandler(this.serverStart_bttn_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.serverStart_bttn);
             this.Controls.Add(this.txtReceiver);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -70,7 +76,7 @@ namespace Detyra2_TCPserver
         #endregion
 
         private System.Windows.Forms.TextBox txtReceiver;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button serverStart_bttn;
     }
 }
 

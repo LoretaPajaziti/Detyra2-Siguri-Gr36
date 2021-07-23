@@ -20,7 +20,14 @@ namespace Detyra2_TCPclient
     public partial class Form1 : Form
     {
 
-        string ConnectionString = "Server=localhost;Database=sigdb;Uid=root;Pwd=;";
+        string form = "REGISTER";
+        string name = "";
+        string surname = "";
+        string email = "";
+        string password = "";
+        string salt = "";
+
+
         public Form1()
         {
             InitializeComponent();
@@ -48,38 +55,24 @@ namespace Detyra2_TCPclient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
-
-            try
-            {
-                connection.Open();
-
+ 
                 string Salt = new Random().Next(100000, 1000000).ToString();
+                salt = Salt;
                 string Password = txtPassword.Text;
 
                 string SaltedPassword = Salt + Password;
                 string SaltedHashPassword = CalculateHash(SaltedPassword);
+                password = SaltedHashPassword;
 
-                string strCommand = "insert into users(name, surname, email, password, salt) values (" +
-                    "'" + txtName.Text + "','" + txtSurname.Text + "','" + txtEmail.Text + "','" + SaltedHashPassword + "','" + Salt + "')";
+                string form = "REGISTER";
+                string name = txtName.Text;
+                string surname = txtSurname.Text;
+                string email = txtEmail.Text;
 
-                MySqlCommand sqlCommand = new MySqlCommand(strCommand, connection);
-                int retValue = sqlCommand.ExecuteNonQuery();
+                string msg = form + "?" + name + "?" + surname + "?" + email + "?" + password + "?" + salt + "?";
 
-                if(retValue > 0)
-                {
-                    MessageBox.Show("Te dhenat u ruajten me sukses!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Ruajtja deshtoi!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Lidhja deshtoi!\n " + ex.Message);
-            }
+                clientConnection.Instance.sendData(msg);
+                clientConnection.Instance.readData();
 
         }
 
@@ -97,6 +90,5 @@ namespace Detyra2_TCPclient
 
         }
 
-        
     }
 }
