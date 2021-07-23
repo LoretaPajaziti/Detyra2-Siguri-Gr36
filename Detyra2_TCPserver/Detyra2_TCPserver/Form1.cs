@@ -15,7 +15,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.IO;
 using MySqlConnector;
-
+using System.Xml;
 
 namespace Detyra2_TCPserver
 {
@@ -28,6 +28,8 @@ namespace Detyra2_TCPserver
         string ConnectionString = "Server=localhost;Database=sigdb;Uid=root;Pwd=;";
         RSACryptoServiceProvider objRSA = new RSACryptoServiceProvider();
         DESCryptoServiceProvider objDES = new DESCryptoServiceProvider();
+        X509Certificate2 certifikata = new X509Certificate2();
+        XmlDocument objXml = new XmlDocument();
         byte[] ClientKey;
         byte[] ClientInitialVector;
 
@@ -41,6 +43,7 @@ namespace Detyra2_TCPserver
         public Form1()
         {
             InitializeComponent();
+
         }
 
         public void handleClient(Socket accept)
@@ -214,6 +217,7 @@ namespace Detyra2_TCPserver
             }
         }
 
+   
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -233,8 +237,40 @@ namespace Detyra2_TCPserver
             serveri.Bind(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
             serveri.Listen(20);
             txtReceiver.AppendText("Serveri filloi degjimin ne portin 1400\r\n");
-                accept = serveri.Accept();
-                handleClient(accept);
+                
+             
+
+            //CERTIFIKATA X.509
+            /*
+                X509Store certificateStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+                certificateStore.Open(OpenFlags.OpenExistingOnly);
+
+                try
+                {
+                    X509Certificate2Collection certificateCollection = X509Certificate2UI.SelectFromCollection(certificateStore.Certificates,
+                        "Zgjedh certifikaten", "Zgjedhni certifikaten per nenshrkim", X509SelectionFlag.SingleSelection);
+
+                    certifikata = certificateCollection[0];
+                    if (certifikata.HasPrivateKey)
+                    {
+                        MessageBox.Show("Keni perzgjedhur certifikaten e " +
+                            certifikata.Subject);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Certifikata nuk permbane celes privat!");
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+              byte[] byteCert = certifikata.Export(X509ContentType.Cert, "");
+            //  accept.Send(byteCert, 0, byteCert.Length, 0);*/
+            accept = serveri.Accept();
+            handleClient(accept);
+
         }
 
         //ENKRIPTIMI
@@ -276,12 +312,25 @@ namespace Detyra2_TCPserver
             ClientKey = Convert.FromBase64String(info[1]);
             ClientInitialVector = Convert.FromBase64String(info[0]);
 
-            objDES.Key = ClientKey;
+           // objDES.Key = ClientKey;
             objDES.IV = ClientInitialVector;
 
             objDES.Padding = PaddingMode.PKCS7;
             objDES.Mode = CipherMode.CBC;
 
+            //  var myDocuments = Environment.GetEnvironmentVariable(Environment.SpecialFolder.MyDocuments);
+            //var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\loret\\Desktop\\server.crt"));
+            // var keyPath = System.IO.File("C:\\Users\\loret\\Desktop\\server.pem");
+
+            var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var keyPath = Path.Combine(myDocs, "lumi", "server.xml");
+            StreamReader sr = new StreamReader(keyPath);
+            string xmlParameters = sr.ReadToEnd();
+            objRSA.FromXmlString(xmlParameters);
+
+           // objRSA = (RSACryptoServiceProvider)keyPath;
+            byte[] byteKey = objRSA.Decrypt(Convert.FromBase64String(info[1]), RSAEncryptionPadding.Pkcs1);
+            objDES.Key = byteKey;
             byte[] byteCiphertexti = Convert.FromBase64String(info[2]);
             MemoryStream ms = new MemoryStream(byteCiphertexti);
             CryptoStream cs = new CryptoStream(ms, objDES.CreateDecryptor(), CryptoStreamMode.Read);

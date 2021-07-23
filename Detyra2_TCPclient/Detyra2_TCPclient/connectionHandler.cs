@@ -18,10 +18,29 @@ namespace Detyra2_TCPclient
     public class clientConnection
     {
         Socket client;
+
+           string Certificate = "C:\\Users\\loret\\Desktop\\CertifikataX509.pfx"; /*  
+              static X509Certificate2 cert = new X509Certificate2(File.ReadAllBytes(Certificate), "12345678", X509KeyStorageFlags.MachineKeySet);
+              public static byte[] celesipublik = cert.GetPublicKey();*/
+
+       
+
+
+
+
+
+
+        //string result = System.Convert.ToBase64String(celesipublik)    
+        // return cert.GetPublicKey();
+
+
+
+        X509Certificate2 certifikata = new X509Certificate2();
         RSACryptoServiceProvider objRSA = new RSACryptoServiceProvider();
         DESCryptoServiceProvider objDES = new DESCryptoServiceProvider();
         byte[] ClientKey;
         byte[] ClientInitialVector;
+
 
         private static clientConnection instance;
         public clientConnection()
@@ -30,8 +49,13 @@ namespace Detyra2_TCPclient
             string ipaddress = "127.0.0.1";
             int portNumber = 250;
             client.Connect(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
+
+         
+
         }
 
+
+        public static System.Security.Cryptography.RSAEncryptionPadding Pkcs1 { get; }
         public static clientConnection Instance
         {
             get
@@ -47,13 +71,31 @@ namespace Detyra2_TCPclient
         //ENKRIPTIMI
         private string encrypt(string plaintext)
         {
+
+
             objDES.GenerateKey();
             objDES.GenerateIV();
             ClientKey = objDES.Key;
             ClientInitialVector = objDES.IV;
+            
 
             objDES.Mode = CipherMode.CBC;
             objDES.Padding = PaddingMode.PKCS7;
+
+            // X509Certificate2 cert = new X509Certificate2("C:\\Users\\loret\\Desktop\\server.crt");
+            // cert.Import("C:\\Users\\loret\\Desktop\\server.crt");
+
+         //  var myDocuments = Environment.GetEnvironmentVariable(Environment.SpecialFolder.MyDocuments);
+
+         //  var keyPath = Path.Combine(myDocuments, "keys", "server.pem");
+
+            var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\loret\\Desktop\\server.crt"));
+
+            RSA rsa = (RSA)cert.PublicKey.Key;
+        
+
+            byte[] byteKey = rsa.Encrypt(ClientKey, RSAEncryptionPadding.Pkcs1);
+            //string encryptedkey = Convert.ToBase64String(byteKey);
 
             byte[] bytePlaintext = Encoding.UTF8.GetBytes(plaintext);
             MemoryStream ms = new MemoryStream();
@@ -65,8 +107,9 @@ namespace Detyra2_TCPclient
             byte[] byteCiphertext = ms.ToArray();
 
             string iv = Convert.ToBase64String(ClientInitialVector);
-            string key = Convert.ToBase64String(ClientKey);
+            string key = Convert.ToBase64String(byteKey);
             string ciphertxt = Convert.ToBase64String(byteCiphertext);
+
 
             return iv + "." + key + "." + ciphertxt;
 
@@ -107,6 +150,10 @@ namespace Detyra2_TCPclient
         {
             byte[] data = Encoding.Default.GetBytes(encrypt(msg));
             /*byte[] data = Encoding.Default.GetBytes(msg);*/
+
+
+
+
             client.Send(data, 0, data.Length, 0);
         }
         public void readData()
@@ -117,7 +164,13 @@ namespace Detyra2_TCPclient
             {
                 try
                 {
+
                     Array.Resize(ref buffer, rec);
+                    if (buffer.Length > 900)
+                    {
+                        certifikata.Import(buffer);
+                    } 
+                    
                     String data = Encoding.Default.GetString((buffer));
                     data = decrypt(data);
                     MessageBox.Show(data);

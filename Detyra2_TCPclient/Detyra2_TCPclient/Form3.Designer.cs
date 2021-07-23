@@ -71,6 +71,7 @@ namespace Detyra2_TCPclient
             this.textPass.Name = "textPass";
             this.textPass.Size = new System.Drawing.Size(167, 29);
             this.textPass.TabIndex = 4;
+            this.textPass.UseSystemPasswordChar = true;
             // 
             // txtpassword
             // 
