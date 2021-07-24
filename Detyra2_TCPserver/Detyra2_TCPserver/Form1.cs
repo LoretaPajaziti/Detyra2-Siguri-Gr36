@@ -16,13 +16,15 @@ using System.Security.Cryptography;
 using System.IO;
 using MySqlConnector;
 using System.Xml;
+using JWT;
+using JWT.Algorithms;
+using JWT.Serializers;
 
 namespace Detyra2_TCPserver
 {
     public partial class Form1 : Form
     {
 
-        
         Socket serveri;
         Socket accept;
         string ConnectionString = "Server=localhost;Database=sigdb;Uid=root;Pwd=;";
@@ -43,7 +45,6 @@ namespace Detyra2_TCPserver
         public Form1()
         {
             InitializeComponent();
-
         }
 
         public void handleClient(Socket accept)
@@ -52,8 +53,7 @@ namespace Detyra2_TCPserver
             {
                 byte[] buffer = new byte[2048];
                 int rec = accept.Receive(buffer, 0, buffer.Length, 0);
-                /*while (rec > 0)
-                {*/
+
                 try
                 {
 
@@ -74,13 +74,18 @@ namespace Detyra2_TCPserver
                             MySqlConnection connection = new MySqlConnection(ConnectionString);
 
                             connection.Open();
-                            String email = list[1];
-                            String password = list[2];
+                            string email = list[1];
+                            string password = list[2];
                             string dbPassword = "";
                             string dbSalt = "";
+                            string id = "";
+                            string name = "";
+                            string surname = "";
 
 
-                            string strCommand = "Select password,salt from users where email = '" + email + "'";
+
+
+                            string strCommand = "Select password,salt,id,name,surname from users where email = '" + email + "'";
 
                             using (MySqlCommand command = new MySqlCommand(strCommand, connection))
                             {
@@ -91,21 +96,46 @@ namespace Detyra2_TCPserver
                                         {
                                             dbPassword = reader["password"].ToString();
                                             dbSalt = reader["salt"].ToString();
+                                            id = reader["id"].ToString();
+                                            name = reader["name"].ToString();
+                                            surname = reader["surname"].ToString();
+
+
+                                            string saltedPassword = dbSalt + password;
+                                            string hashedSaltedPassword = CalculateHash(saltedPassword);
+                                            password = hashedSaltedPassword;
 
                                         }
                                         if (password.Equals(dbPassword))
                                         {
                                             txtReceiver.AppendText("You have been Logged In" + "\r\n");
-                                            string msg = "Login completed";
+
+                                            string msg = "Login completed?";
+
+                                            var payload = new Dictionary<string, object>
+                                            {
+                                                {"userid", id },
+                                                {"name", name },
+                                                {"surname", surname },
+                                                {"email", email }
+                                            };
+
+                                            IJwtAlgorithm algorithm = new JWT.Algorithms.HMACSHA256Algorithm();
+                                            IJsonSerializer serializer = new JsonNetSerializer();
+                                            IBase64UrlEncoder base64UrlEncoder = new JwtBase64UrlEncoder();
+                                            IJwtEncoder jwtEncoder = new JwtEncoder(algorithm, serializer, base64UrlEncoder);
+                                            const string secret = "As8DhbTY6Hb6jhFJK76GH76hvg&";
+
+                                            var token = jwtEncoder.Encode(payload, secret);
+                                            msg = msg + token + "?";
+
                                             byte[] answer = Encoding.Default.GetBytes(encrypt(msg));
                                             accept.Send(answer, 0, answer.Length, 0);
-                                            /*rec = 0;*/
                                         }
                                         else
                                         {
                                             txtReceiver.AppendText("password was not correct" + "\r\n");
 
-                                            /*rec = 0;*/
                                         }
                                     }
                                 }
@@ -140,7 +170,7 @@ namespace Detyra2_TCPserver
                                 if (executed > 0)
                                 {
                                     txtReceiver.AppendText("User registered successully" + "\r\n");
-                                    string msg = "Registering completed";
+                                    string msg = "Registering completed?";
                                     byte[] answer = Encoding.Default.GetBytes(encrypt(msg));
                                     accept.Send(answer, 0, answer.Length, 0);
                                     /*rec = 0;*/
@@ -187,17 +217,14 @@ namespace Detyra2_TCPserver
                                 {
 
                                     txtReceiver.AppendText("User Data updated successully" + "\r\n");
-                                    string msg = "Update completed";
+                                    string msg = "Update completed?";
                                     byte[] answer = Encoding.Default.GetBytes(encrypt(msg));
                                     accept.Send(answer, 0, answer.Length, 0);
-                                    /*rec = 0;*/
                                 }
                                 else
                                 {
 
                                     txtReceiver.AppendText("Couldnt Update Data" + "\r\n");
-                                    
-                                    /*rec = 0;*/
                                 }
                             }
                         }
@@ -206,6 +233,56 @@ namespace Detyra2_TCPserver
                             MessageBox.Show("Lidhja deshtoi!\n " + ex.Message);
                         }
 
+                    }
+
+                    else if (requestToServer.Equals("INSERT"))
+                    {
+                        txtReceiver.AppendText("Updating\r\n");
+
+                        try
+                        {
+                            MySqlConnection connection = new MySqlConnection(ConnectionString);
+
+                            connection.Open();
+                            String name = list[1];
+                            String surname = list[2];
+                            String lloji = list[3];
+                            String vlera = list[4];
+                            String Data = list[5];
+                            String adresa = list[6];
+   
+                            string strCommand = "select id from users where name = '"+name+"' and surname = '"+surname+"'";
+                            using (MySqlCommand command = new MySqlCommand(strCommand, connection))
+                            {
+                                using (MySqlDataReader reader = command.ExecuteReader())
+                                {
+                                    int executed = 0;
+                                    if (reader.Read())
+                                    {
+                                        string id = reader["id"].ToString();
+                                        reader.Close();
+                                        command.CommandText = "INSERT INTO `faturat`(`id`, `lloji`, `data`, `vlera`, `adresa`) VALUES ('" + id + "','"+lloji+"','"+Data+"','"+vlera+"','"+adresa+"')";
+                                        executed = command.ExecuteNonQuery();
+                                    };
+
+                                    if (executed > 0)
+                                    {
+                                        txtReceiver.AppendText("User data was inserted" + "\r\n");
+
+                                        string msg = "Insert completed?";
+
+
+                                        byte[] answer = Encoding.Default.GetBytes(encrypt(msg));
+                                        accept.Send(answer, 0, answer.Length, 0);
+                                    }
+                                    txtReceiver.AppendText("Insert failed" + "\r\n");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error inserting\n " + ex.Message);
+                        }
                     }
 
                 }
@@ -217,7 +294,6 @@ namespace Detyra2_TCPserver
             }
         }
 
-   
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -237,40 +313,8 @@ namespace Detyra2_TCPserver
             serveri.Bind(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
             serveri.Listen(20);
             txtReceiver.AppendText("Serveri filloi degjimin ne portin 1400\r\n");
-                
-             
-
-            //CERTIFIKATA X.509
-            /*
-                X509Store certificateStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-                certificateStore.Open(OpenFlags.OpenExistingOnly);
-
-                try
-                {
-                    X509Certificate2Collection certificateCollection = X509Certificate2UI.SelectFromCollection(certificateStore.Certificates,
-                        "Zgjedh certifikaten", "Zgjedhni certifikaten per nenshrkim", X509SelectionFlag.SingleSelection);
-
-                    certifikata = certificateCollection[0];
-                    if (certifikata.HasPrivateKey)
-                    {
-                        MessageBox.Show("Keni perzgjedhur certifikaten e " +
-                            certifikata.Subject);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Certifikata nuk permbane celes privat!");
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-              byte[] byteCert = certifikata.Export(X509ContentType.Cert, "");
-            //  accept.Send(byteCert, 0, byteCert.Length, 0);*/
             accept = serveri.Accept();
             handleClient(accept);
-
         }
 
         //ENKRIPTIMI
@@ -312,15 +356,9 @@ namespace Detyra2_TCPserver
             ClientKey = Convert.FromBase64String(info[1]);
             ClientInitialVector = Convert.FromBase64String(info[0]);
 
-           // objDES.Key = ClientKey;
             objDES.IV = ClientInitialVector;
-
             objDES.Padding = PaddingMode.PKCS7;
             objDES.Mode = CipherMode.CBC;
-
-            //  var myDocuments = Environment.GetEnvironmentVariable(Environment.SpecialFolder.MyDocuments);
-            //var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\loret\\Desktop\\server.crt"));
-            // var keyPath = System.IO.File("C:\\Users\\loret\\Desktop\\server.pem");
 
             var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var keyPath = Path.Combine(myDocs, "lumi", "server.xml");
@@ -328,7 +366,6 @@ namespace Detyra2_TCPserver
             string xmlParameters = sr.ReadToEnd();
             objRSA.FromXmlString(xmlParameters);
 
-           // objRSA = (RSACryptoServiceProvider)keyPath;
             byte[] byteKey = objRSA.Decrypt(Convert.FromBase64String(info[1]), RSAEncryptionPadding.Pkcs1);
             objDES.Key = byteKey;
             byte[] byteCiphertexti = Convert.FromBase64String(info[2]);
@@ -342,6 +379,15 @@ namespace Detyra2_TCPserver
             string decryptedText = Encoding.UTF8.GetString(byteTextiDekriptuar);
             return decryptedText;
 
+        }
+
+        private string CalculateHash(string SaltedPassword)
+        {
+            byte[] byteSaltedPassword = Encoding.UTF8.GetBytes(SaltedPassword);
+            SHA1CryptoServiceProvider objHash = new SHA1CryptoServiceProvider();
+            byte[] byteSaltedHashPassword = objHash.ComputeHash(byteSaltedPassword);
+
+            return Convert.ToBase64String(byteSaltedHashPassword);
         }
     }
 

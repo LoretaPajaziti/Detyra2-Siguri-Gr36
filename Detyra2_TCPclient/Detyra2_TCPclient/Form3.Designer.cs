@@ -44,7 +44,7 @@ namespace Detyra2_TCPclient
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(177, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 21);
+            this.label1.Size = new System.Drawing.Size(66, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Log in";
             // 
@@ -53,7 +53,7 @@ namespace Detyra2_TCPclient
             this.txtemail.AutoSize = true;
             this.txtemail.Location = new System.Drawing.Point(52, 83);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(48, 21);
+            this.txtemail.Size = new System.Drawing.Size(59, 28);
             this.txtemail.TabIndex = 1;
             this.txtemail.Text = "Email";
             // 
@@ -61,7 +61,7 @@ namespace Detyra2_TCPclient
             // 
             this.textEmail.Location = new System.Drawing.Point(134, 80);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(167, 29);
+            this.textEmail.Size = new System.Drawing.Size(167, 34);
             this.textEmail.TabIndex = 2;
             this.textEmail.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -69,7 +69,7 @@ namespace Detyra2_TCPclient
             // 
             this.textPass.Location = new System.Drawing.Point(134, 128);
             this.textPass.Name = "textPass";
-            this.textPass.Size = new System.Drawing.Size(167, 29);
+            this.textPass.Size = new System.Drawing.Size(167, 34);
             this.textPass.TabIndex = 4;
             this.textPass.UseSystemPasswordChar = true;
             // 
@@ -78,7 +78,7 @@ namespace Detyra2_TCPclient
             this.txtpassword.AutoSize = true;
             this.txtpassword.Location = new System.Drawing.Point(52, 131);
             this.txtpassword.Name = "txtpassword";
-            this.txtpassword.Size = new System.Drawing.Size(76, 21);
+            this.txtpassword.Size = new System.Drawing.Size(93, 28);
             this.txtpassword.TabIndex = 3;
             this.txtpassword.Text = "Password";
             // 
@@ -98,13 +98,13 @@ namespace Detyra2_TCPclient
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 37);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Regjistrohu";
+            this.button2.Text = "Register";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(385, 315);
             this.Controls.Add(this.button2);

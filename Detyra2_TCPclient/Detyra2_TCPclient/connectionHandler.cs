@@ -11,6 +11,9 @@ using System.Threading;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.IO;
+using JWT.Algorithms;
+using JWT;
+using JWT.Serializers;
 
 namespace Detyra2_TCPclient
 {
@@ -18,29 +21,11 @@ namespace Detyra2_TCPclient
     public class clientConnection
     {
         Socket client;
-
-           string Certificate = "C:\\Users\\loret\\Desktop\\CertifikataX509.pfx"; /*  
-              static X509Certificate2 cert = new X509Certificate2(File.ReadAllBytes(Certificate), "12345678", X509KeyStorageFlags.MachineKeySet);
-              public static byte[] celesipublik = cert.GetPublicKey();*/
-
-       
-
-
-
-
-
-
-        //string result = System.Convert.ToBase64String(celesipublik)    
-        // return cert.GetPublicKey();
-
-
-
         X509Certificate2 certifikata = new X509Certificate2();
         RSACryptoServiceProvider objRSA = new RSACryptoServiceProvider();
         DESCryptoServiceProvider objDES = new DESCryptoServiceProvider();
         byte[] ClientKey;
         byte[] ClientInitialVector;
-
 
         private static clientConnection instance;
         public clientConnection()
@@ -50,12 +35,11 @@ namespace Detyra2_TCPclient
             int portNumber = 250;
             client.Connect(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
 
-         
-
         }
 
-
         public static System.Security.Cryptography.RSAEncryptionPadding Pkcs1 { get; }
+
+
         public static clientConnection Instance
         {
             get
@@ -71,36 +55,21 @@ namespace Detyra2_TCPclient
         //ENKRIPTIMI
         private string encrypt(string plaintext)
         {
-
-
             objDES.GenerateKey();
             objDES.GenerateIV();
             ClientKey = objDES.Key;
             ClientInitialVector = objDES.IV;
-            
 
             objDES.Mode = CipherMode.CBC;
             objDES.Padding = PaddingMode.PKCS7;
 
-            // X509Certificate2 cert = new X509Certificate2("C:\\Users\\loret\\Desktop\\server.crt");
-            // cert.Import("C:\\Users\\loret\\Desktop\\server.crt");
-
-         //  var myDocuments = Environment.GetEnvironmentVariable(Environment.SpecialFolder.MyDocuments);
-
-         //  var keyPath = Path.Combine(myDocuments, "keys", "server.pem");
-
-            var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\loret\\Desktop\\server.crt"));
-
+            var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\lumdu\\Desktop\\server.crt"));
             RSA rsa = (RSA)cert.PublicKey.Key;
-        
-
             byte[] byteKey = rsa.Encrypt(ClientKey, RSAEncryptionPadding.Pkcs1);
-            //string encryptedkey = Convert.ToBase64String(byteKey);
 
             byte[] bytePlaintext = Encoding.UTF8.GetBytes(plaintext);
             MemoryStream ms = new MemoryStream();
             CryptoStream cs = new CryptoStream(ms, objDES.CreateEncryptor(), CryptoStreamMode.Write);
-
             cs.Write(bytePlaintext, 0, bytePlaintext.Length);
             cs.Close();
 
@@ -110,16 +79,13 @@ namespace Detyra2_TCPclient
             string key = Convert.ToBase64String(byteKey);
             string ciphertxt = Convert.ToBase64String(byteCiphertext);
 
-
             return iv + "." + key + "." + ciphertxt;
-
 
         }
 
         //DEKRIPTIMI
         private string decrypt(string ciphertext)
         {
-
 
             string[] info = ciphertext.Split('.');
 
@@ -149,10 +115,6 @@ namespace Detyra2_TCPclient
         public void sendData(String msg)
         {
             byte[] data = Encoding.Default.GetBytes(encrypt(msg));
-            /*byte[] data = Encoding.Default.GetBytes(msg);*/
-
-
-
 
             client.Send(data, 0, data.Length, 0);
         }
@@ -164,23 +126,38 @@ namespace Detyra2_TCPclient
             {
                 try
                 {
-
                     Array.Resize(ref buffer, rec);
                     if (buffer.Length > 900)
                     {
                         certifikata.Import(buffer);
-                    } 
-                    
+                    }
                     String data = Encoding.Default.GetString((buffer));
                     data = decrypt(data);
-                    MessageBox.Show(data);
+                    String[] response = data.Split('?');
 
-                    if (data.Equals("Login completed"))
+                    string token = "";
+
+                    MessageBox.Show(response[0]);
+
+                    if (response[0].Equals("Login completed"))
                     {
-                        Form2 frm = new Form2();
+                        token = response[1];
+                        IJwtAlgorithm algorithm = new JWT.Algorithms.HMACSHA256Algorithm();
+                        IJsonSerializer serializer = new JsonNetSerializer();
+                        IBase64UrlEncoder base64UrlEncoder = new JwtBase64UrlEncoder();
+                        IJwtValidator jwtValidator = new JwtValidator(serializer, new UtcDateTimeProvider());
+                        IJwtDecoder jwtDecoder = new JwtDecoder(serializer, jwtValidator, base64UrlEncoder, algorithm);
+
+                        const string secret = "As8DhbTY6Hb6jhFJK76GH76hvg&";
+
+                        var json = jwtDecoder.Decode(token, secret, true);
+
+                        MessageBox.Show(json);
+
+                        Form4 frm = new Form4();
                         frm.ShowDialog();
                     }
-                    else if (data.Equals("Registering completed"))
+                    else if (response[0].Equals("Registering completed"))
                     {
                         Form3 frm = new Form3();
                         frm.ShowDialog();

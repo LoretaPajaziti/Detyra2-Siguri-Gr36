@@ -21,11 +21,6 @@ namespace Detyra2_TCPclient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form3());
-
-            /*Client klienti = new Client();
-
-            Socket clientConnection = klienti.clientCreate();*/
-
         }
     }
 }

@@ -49,9 +49,9 @@ namespace Detyra2_TCPclient
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 174);
+            this.label1.Location = new System.Drawing.Point(14, 232);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 21);
+            this.label1.Size = new System.Drawing.Size(122, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lloji i fatures";
             // 
@@ -59,9 +59,9 @@ namespace Detyra2_TCPclient
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(159, 46);
+            this.label2.Location = new System.Drawing.Point(182, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 28);
+            this.label2.Size = new System.Drawing.Size(144, 35);
             this.label2.TabIndex = 1;
             this.label2.Text = "Shpenzimet";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -69,10 +69,9 @@ namespace Detyra2_TCPclient
             // txtlloji
             // 
             this.txtlloji.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtlloji.Location = new System.Drawing.Point(136, 174);
-            this.txtlloji.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtlloji.Location = new System.Drawing.Point(155, 232);
             this.txtlloji.Name = "txtlloji";
-            this.txtlloji.Size = new System.Drawing.Size(160, 23);
+            this.txtlloji.Size = new System.Drawing.Size(183, 27);
             this.txtlloji.TabIndex = 2;
             this.txtlloji.TextChanged += new System.EventHandler(this.txtlloji_TextChanged);
             // 
@@ -80,9 +79,9 @@ namespace Detyra2_TCPclient
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(79, 96);
+            this.label3.Location = new System.Drawing.Point(90, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 21);
+            this.label3.Size = new System.Drawing.Size(51, 28);
             this.label3.TabIndex = 3;
             this.label3.Text = "Emri";
             // 
@@ -90,29 +89,27 @@ namespace Detyra2_TCPclient
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(45, 134);
+            this.label4.Location = new System.Drawing.Point(51, 179);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 21);
+            this.label4.Size = new System.Drawing.Size(86, 28);
             this.label4.TabIndex = 4;
             this.label4.Text = "Mbiemri";
             // 
             // txtMbiemri
             // 
             this.txtMbiemri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMbiemri.Location = new System.Drawing.Point(136, 133);
-            this.txtMbiemri.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMbiemri.Location = new System.Drawing.Point(155, 177);
             this.txtMbiemri.Name = "txtMbiemri";
-            this.txtMbiemri.Size = new System.Drawing.Size(160, 23);
+            this.txtMbiemri.Size = new System.Drawing.Size(183, 27);
             this.txtMbiemri.TabIndex = 5;
             this.txtMbiemri.TextChanged += new System.EventHandler(this.txtMbiemri_TextChanged);
             // 
             // txtEmri
             // 
             this.txtEmri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmri.Location = new System.Drawing.Point(136, 95);
-            this.txtEmri.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmri.Location = new System.Drawing.Point(155, 127);
             this.txtEmri.Name = "txtEmri";
-            this.txtEmri.Size = new System.Drawing.Size(160, 23);
+            this.txtEmri.Size = new System.Drawing.Size(183, 27);
             this.txtEmri.TabIndex = 7;
             this.txtEmri.TextChanged += new System.EventHandler(this.txtEmri_TextChanged);
             // 
@@ -120,9 +117,9 @@ namespace Detyra2_TCPclient
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(69, 211);
+            this.label5.Location = new System.Drawing.Point(79, 281);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 21);
+            this.label5.Size = new System.Drawing.Size(53, 28);
             this.label5.TabIndex = 8;
             this.label5.Text = "Data";
             // 
@@ -130,9 +127,9 @@ namespace Detyra2_TCPclient
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(66, 248);
+            this.label6.Location = new System.Drawing.Point(75, 331);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 21);
+            this.label6.Size = new System.Drawing.Size(56, 28);
             this.label6.TabIndex = 9;
             this.label6.Text = "Vlera";
             // 
@@ -140,59 +137,55 @@ namespace Detyra2_TCPclient
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(52, 285);
+            this.label7.Location = new System.Drawing.Point(59, 380);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 21);
+            this.label7.Size = new System.Drawing.Size(72, 28);
             this.label7.TabIndex = 10;
             this.label7.Text = "Adresa";
             // 
             // txtData
             // 
             this.txtData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtData.Location = new System.Drawing.Point(133, 212);
-            this.txtData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtData.Location = new System.Drawing.Point(152, 283);
             this.txtData.Name = "txtData";
-            this.txtData.Size = new System.Drawing.Size(164, 23);
+            this.txtData.Size = new System.Drawing.Size(187, 27);
             this.txtData.TabIndex = 11;
             this.txtData.TextChanged += new System.EventHandler(this.txtData_TextChanged);
             // 
             // txtVlera
             // 
             this.txtVlera.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVlera.Location = new System.Drawing.Point(133, 249);
-            this.txtVlera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtVlera.Location = new System.Drawing.Point(152, 332);
             this.txtVlera.Name = "txtVlera";
-            this.txtVlera.Size = new System.Drawing.Size(164, 23);
+            this.txtVlera.Size = new System.Drawing.Size(187, 27);
             this.txtVlera.TabIndex = 13;
             this.txtVlera.TextChanged += new System.EventHandler(this.txtVlera_TextChanged);
             // 
             // txtAdresa
             // 
             this.txtAdresa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdresa.Location = new System.Drawing.Point(133, 287);
-            this.txtAdresa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAdresa.Location = new System.Drawing.Point(152, 383);
             this.txtAdresa.Name = "txtAdresa";
-            this.txtAdresa.Size = new System.Drawing.Size(164, 23);
+            this.txtAdresa.Size = new System.Drawing.Size(187, 27);
             this.txtAdresa.TabIndex = 12;
             this.txtAdresa.TextChanged += new System.EventHandler(this.txtAdresa_TextChanged);
             // 
             // ndryshoButton
             // 
             this.ndryshoButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ndryshoButton.Location = new System.Drawing.Point(135, 333);
-            this.ndryshoButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ndryshoButton.Location = new System.Drawing.Point(154, 444);
             this.ndryshoButton.Name = "ndryshoButton";
-            this.ndryshoButton.Size = new System.Drawing.Size(161, 34);
+            this.ndryshoButton.Size = new System.Drawing.Size(184, 45);
             this.ndryshoButton.TabIndex = 14;
-            this.ndryshoButton.Text = "Ndrysho";
+            this.ndryshoButton.Text = "Update";
             this.ndryshoButton.UseVisualStyleBackColor = true;
             this.ndryshoButton.Click += new System.EventHandler(this.ndryshoButton_Click);
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 428);
+            this.ClientSize = new System.Drawing.Size(415, 571);
             this.Controls.Add(this.ndryshoButton);
             this.Controls.Add(this.txtVlera);
             this.Controls.Add(this.txtAdresa);
@@ -207,7 +200,6 @@ namespace Detyra2_TCPclient
             this.Controls.Add(this.txtlloji);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);
