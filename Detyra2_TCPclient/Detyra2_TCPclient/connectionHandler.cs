@@ -26,6 +26,7 @@ namespace Detyra2_TCPclient
         DESCryptoServiceProvider objDES = new DESCryptoServiceProvider();
         byte[] ClientKey;
         byte[] ClientInitialVector;
+        X509Certificate2 cert;
 
         private static clientConnection instance;
         public clientConnection()
@@ -34,7 +35,13 @@ namespace Detyra2_TCPclient
             string ipaddress = "127.0.0.1";
             int portNumber = 250;
             client.Connect(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
-
+            X509Store x509Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            x509Store.Open(OpenFlags.OpenExistingOnly);
+            X509Certificate2Collection collectionCert = X509Certificate2UI.SelectFromCollection(x509Store.Certificates, "zgjedh cert", "zgjedh per nenshkrim", X509SelectionFlag.SingleSelection);
+            if (collectionCert[0].HasPrivateKey)
+            {
+                cert = collectionCert[0];
+            }
         }
 
         public static System.Security.Cryptography.RSAEncryptionPadding Pkcs1 { get; }
@@ -63,7 +70,14 @@ namespace Detyra2_TCPclient
             objDES.Mode = CipherMode.CBC;
             objDES.Padding = PaddingMode.PKCS7;
 
-            var cert = new X509Certificate2(System.IO.File.ReadAllBytes("C:\\Users\\lumdu\\Desktop\\server.crt"));
+            /*X509Store x509Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            x509Store.Open(OpenFlags.OpenExistingOnly);
+            X509Certificate2Collection collectionCert = X509Certificate2UI.SelectFromCollection(x509Store.Certificates, "zgjedh cert", "zgjedh per nenshkrim", X509SelectionFlag.MultiSelection);
+            X509Certificate2 cert = null;
+            if (collectionCert[0].HasPrivateKey)
+            {
+                cert = collectionCert[0];
+            }*/
             RSA rsa = (RSA)cert.PublicKey.Key;
             byte[] byteKey = rsa.Encrypt(ClientKey, RSAEncryptionPadding.Pkcs1);
 
@@ -142,7 +156,15 @@ namespace Detyra2_TCPclient
                     if (response[0].Equals("Login completed"))
                     {
                         token = response[1];
-                        IJwtAlgorithm algorithm = new JWT.Algorithms.HMACSHA256Algorithm();
+                        /*X509Store x509Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+                        x509Store.Open(OpenFlags.OpenExistingOnly);
+                        X509Certificate2Collection collectionCert = X509Certificate2UI.SelectFromCollection(x509Store.Certificates, "zgjedh cert", "zgjedh per nenshkrim", X509SelectionFlag.SingleSelection);
+                        X509Certificate2 cert = null;
+                        if (collectionCert[0].HasPrivateKey)
+                        {
+                            cert = collectionCert[0];
+                        }*/
+                        IJwtAlgorithm algorithm = new RS256Algorithm(cert);
                         IJsonSerializer serializer = new JsonNetSerializer();
                         IBase64UrlEncoder base64UrlEncoder = new JwtBase64UrlEncoder();
                         IJwtValidator jwtValidator = new JwtValidator(serializer, new UtcDateTimeProvider());

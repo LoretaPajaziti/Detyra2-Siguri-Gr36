@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj": {}
+    "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj": {
+    "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
+        "projectUniqueName": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
         "projectName": "Detyra2_TCPclient",
-        "projectPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
+        "projectPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
         "packagesPath": "C:\\Users\\lumdu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\obj\\",
+        "outputPath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lumdu\\AppData\\Roaming\\NuGet\\NuGet.Config",

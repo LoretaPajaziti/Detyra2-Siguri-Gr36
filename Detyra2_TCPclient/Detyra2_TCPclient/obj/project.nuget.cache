@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aDBE9hJ3SOAyPHtNHez0yfhPreeEhYhF8+B5Gsht9F9n7HXD++HMq69Eo9Ee5gQX0qnFAIeUPl3u0o9krAhTXQ==",
+  "dgSpecHash": "3nGqLnu9T9EoOhjUpHl2x661E2DNZL17JcX1B+S4NTa4m0hs+LCu82Euq+3lwOdBfcuwiW4tLLR/qPEgOq+z4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36 - Copy\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
+  "projectFilePath": "C:\\Users\\lumdu\\Desktop\\Fk\\Detyra2-Siguri-Gr36\\Detyra2_TCPclient\\Detyra2_TCPclient\\Detyra2_TCPclient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lumdu\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\lumdu\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

@@ -34,7 +34,7 @@ namespace Detyra2_TCPserver
         XmlDocument objXml = new XmlDocument();
         byte[] ClientKey;
         byte[] ClientInitialVector;
-
+        X509Certificate2 cert;
 
         Socket socket()
         {
@@ -68,6 +68,7 @@ namespace Detyra2_TCPserver
 
                     if (requestToServer.Equals("LOGIN"))
                     {
+
                         txtReceiver.AppendText("Trying To Login \r\n");
                         try
                         {
@@ -120,7 +121,7 @@ namespace Detyra2_TCPserver
                                                 {"email", email }
                                             };
 
-                                            IJwtAlgorithm algorithm = new JWT.Algorithms.HMACSHA256Algorithm();
+                                            IJwtAlgorithm algorithm = new RS256Algorithm(cert);
                                             IJsonSerializer serializer = new JsonNetSerializer();
                                             IBase64UrlEncoder base64UrlEncoder = new JwtBase64UrlEncoder();
                                             IJwtEncoder jwtEncoder = new JwtEncoder(algorithm, serializer, base64UrlEncoder);
@@ -286,8 +287,9 @@ namespace Detyra2_TCPserver
                     }
 
                 }
-                catch
+                catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     MessageBox.Show("Connection lost");
                     Application.Exit();
                 }
@@ -313,6 +315,13 @@ namespace Detyra2_TCPserver
             serveri.Bind(new IPEndPoint(IPAddress.Parse(ipaddress), portNumber));
             serveri.Listen(20);
             txtReceiver.AppendText("Serveri filloi degjimin ne portin 1400\r\n");
+            X509Store x509Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            x509Store.Open(OpenFlags.OpenExistingOnly);
+            X509Certificate2Collection collectionCert = X509Certificate2UI.SelectFromCollection(x509Store.Certificates, "zgjedh cert", "zgjedh per nenshkrim", X509SelectionFlag.SingleSelection);
+            if (collectionCert[0].HasPrivateKey)
+            {
+                cert = collectionCert[0];
+            }
             accept = serveri.Accept();
             handleClient(accept);
         }
@@ -360,11 +369,15 @@ namespace Detyra2_TCPserver
             objDES.Padding = PaddingMode.PKCS7;
             objDES.Mode = CipherMode.CBC;
 
-            var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var keyPath = Path.Combine(myDocs, "lumi", "server.xml");
-            StreamReader sr = new StreamReader(keyPath);
-            string xmlParameters = sr.ReadToEnd();
-            objRSA.FromXmlString(xmlParameters);
+            /*X509Store x509Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            x509Store.Open(OpenFlags.OpenExistingOnly);
+            X509Certificate2Collection collectionCert = X509Certificate2UI.SelectFromCollection(x509Store.Certificates, "zgjedh cert", "zgjedh per nenshkrim", X509SelectionFlag.SingleSelection);
+            X509Certificate2 cert = null;
+            if (collectionCert[0].HasPrivateKey)
+            {
+                cert = collectionCert[0];
+            }*/
+            RSA objRSA = (RSA)cert.PrivateKey;
 
             byte[] byteKey = objRSA.Decrypt(Convert.FromBase64String(info[1]), RSAEncryptionPadding.Pkcs1);
             objDES.Key = byteKey;

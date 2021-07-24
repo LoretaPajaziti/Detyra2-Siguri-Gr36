@@ -160,3 +160,6 @@ C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36 - Copy\Detyra2_TCPclient\Detyra2_T
 C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36 - Copy\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debug\netcoreapp3.1\JWT.dll
 C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36 - Copy\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36 - Copy\Detyra2_TCPclient\Detyra2_TCPclient\obj\Debug\netcoreapp3.1\Detyra2_TCPclient.Form5.resources
+C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debug\netcoreapp3.1\JWT.dll
+C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36\Detyra2_TCPclient\Detyra2_TCPclient\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\lumdu\Desktop\Fk\Detyra2-Siguri-Gr36\Detyra2_TCPclient\Detyra2_TCPclient\obj\Debug\netcoreapp3.1\Detyra2_TCPclient.Form5.resources
